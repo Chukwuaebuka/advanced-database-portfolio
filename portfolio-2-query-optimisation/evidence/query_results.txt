@@ -1,0 +1,171 @@
+ pepfar_uid |    client_name    |    lga_name    |              facility_name              |    regimen    | last_pickup_date | next_appointment_date | days_late |   retention_flag    
+------------+-------------------+----------------+-----------------------------------------+---------------+------------------+-----------------------+-----------+---------------------
+ OS-033596  | Yetunde Adeleke   | Ola Oluwa      | Ola Oluwa Primary Health Centre         | AZT/3TC/ATV/r | 2026-04-08       | 2026-07-07            |       126 | IIT (>28 days late)
+ OS-038196  | Bisi Adeyemi      | Ilesa West     | Ilesa West Comprehensive Health Centre  | TLD           | 2026-04-08       | 2026-07-07            |       126 | IIT (>28 days late)
+ OS-007796  | Ngozi Olawale     | Boluwaduro     | Boluwaduro Comprehensive Health Centre  | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-008796  | Bisi Oyewole      | Boripe         | Boripe Comprehensive Health Centre      | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-005395  | Folake Salami     | Irepodun       | Irepodun Primary Health Centre          | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-040595  | Adebayo Bello     | Irewole        | Irewole Comprehensive Health Centre     | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-024996  | Kehinde Akinola   | Ede North      | Ede North Primary Health Centre         | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-035595  | Segun Bello       | Oriade         | Oriade Comprehensive Health Centre      | AZT/3TC/ATV/r | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-038796  | Kehinde Afolabi   | Iwo            | Iwo General Hospital                    | TLD           | 2026-04-09       | 2026-07-08            |       125 | IIT (>28 days late)
+ OS-008592  | Olumide Akinola   | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-04-10       | 2026-07-09            |       124 | IIT (>28 days late)
+ OS-049796  | Yetunde Adeleke   | Isokan         | Isokan Comprehensive Health Centre      | AZT/3TC/ATV/r | 2026-04-10       | 2026-07-09            |       124 | IIT (>28 days late)
+ OS-010396  | Folake Adeleke    | Ede South      | Ede South General Hospital              | TLD           | 2026-04-10       | 2026-07-09            |       124 | IIT (>28 days late)
+ OS-027991  | Segun Olawale     | Orolu          | Orolu General Hospital                  | AZT/3TC/ATV/r | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-019791  | Ibrahim Ogunleye  | Ejigbo         | Ejigbo General Hospital                 | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-028791  | Adebayo Olawale   | Iwo            | Iwo General Hospital                    | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-018396  | Funmilayo Afolabi | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-04-11       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-012395  | Folake Adeleke    | Ife East       | Ife East Comprehensive Health Centre    | TLD           | 2026-04-11       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-040391  | Funmilayo Adeyemi | Orolu          | Orolu General Hospital                  | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-029591  | Kehinde Oyewole   | Atakumosa East | Atakumosa East Primary Health Centre    | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-047391  | Folake Salami     | Ede North      | Ede North General Hospital              | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-037391  | Olumide Adeleke   | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-000191  | Folake Ojo        | Osogbo         | Osogbo General Hospital                 | DRV/r + DTG   | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-011191  | Folake Ojo        | Ola Oluwa      | Ola Oluwa General Hospital              | TLD           | 2026-04-11       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-045791  | Ibrahim Akinola   | Ila            | Ila Comprehensive Health Centre         | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-019991  | Ngozi Bello       | Ede North      | Ede North Primary Health Centre         | TLD           | 2026-06-10       | 2026-07-10            |       123 | IIT (>28 days late)
+ OS-020196  | Tunde Afolabi     | Osogbo         | Osogbo General Hospital                 | DRV/r + DTG   | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-007190  | Ngozi Ogunleye    | Oriade         | Oriade General Hospital                 | TLD           | 2026-01-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-009196  | Tunde Akinola     | Ife Central    | Ife Central Comprehensive Health Centre | TLD           | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-020192  | Aisha Ogunleye    | Atakumosa West | Atakumosa West General Hospital         | TLD           | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-012791  | Funmilayo Afolabi | Osogbo         | Osogbo Comprehensive Health Centre      | TLD           | 2026-06-11       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-014796  | Ibrahim Adeyemi   | Obokun         | Obokun General Hospital                 | TLD           | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-003391  | Segun Olawale     | Boluwaduro     | Boluwaduro General Hospital             | TLD           | 2026-06-11       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-034591  | Aisha Ogunleye    | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-06-11       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-002395  | Funmilayo Adeyemi | Obokun         | Obokun Comprehensive Health Centre      | AZT/3TC/ATV/r | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-047795  | Bisi Adeleke      | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-04-12       | 2026-07-11            |       122 | IIT (>28 days late)
+ OS-011591  | Folake Adeyemi    | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-041392  | Olumide Olawale   | Ife North      | Ife North Comprehensive Health Centre   | TLD           | 2026-04-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-038991  | Segun Ojo         | Ife South      | Ife South General Hospital              | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-016592  | Tunde Ogunleye    | Isokan         | Isokan General Hospital                 | TLD           | 2026-04-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-028591  | Olumide Akinola   | Egbedore       | Egbedore Primary Health Centre          | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-004995  | Olumide Salami    | Iwo            | Iwo Primary Health Centre               | TLD           | 2026-04-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-042997  | Bisi Afolabi      | Ila            | Ila General Hospital                    | TLD           | 2026-01-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-025191  | Tunde Adeleke     | Ife South      | Ife South General Hospital              | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-002391  | Kehinde Olawale   | Osogbo         | Osogbo Comprehensive Health Centre      | AZT/3TC/ATV/r | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-035991  | Ngozi Adeleke     | Osogbo         | Osogbo General Hospital                 | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-030390  | Ibrahim Salami    | Egbedore       | Egbedore Comprehensive Health Centre    | TLD           | 2026-01-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-017192  | Funmilayo Bello   | Olorunda       | Olorunda Primary Health Centre          | TLD           | 2026-04-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-013395  | Funmilayo Olawale | Ejigbo         | Ejigbo Comprehensive Health Centre      | TLD           | 2026-04-13       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-012591  | Tunde Bello       | Osogbo         | Osogbo Comprehensive Health Centre      | TLD           | 2026-06-12       | 2026-07-12            |       121 | IIT (>28 days late)
+ OS-018197  | Segun Akinola     | Ife South      | Ife South Comprehensive Health Centre   | TLD           | 2026-01-13       | 2026-07-12            |       121 | IIT (>28 days late)
+(50 rows)
+
+    lga_name    | active_art_clients | presumptive_tb_clients | confirmed_tb_coinfected | tb_treatment_initiated | coinfection_rate_pct 
+----------------+--------------------+------------------------+-------------------------+------------------------+----------------------
+ Osogbo         |               4411 |                    908 |                     337 |                    337 |                 7.64
+ Ife South      |                789 |                    153 |                      66 |                     66 |                 8.37
+ Ifedayo        |                757 |                    157 |                      64 |                     64 |                 8.45
+ Irewole        |                739 |                    132 |                      64 |                     64 |                 8.66
+ Ilesa West     |                743 |                    143 |                      64 |                     64 |                 8.61
+ Aiyedaade      |                688 |                    151 |                      62 |                     62 |                 9.01
+ Ifelodun       |                746 |                    159 |                      62 |                     62 |                 8.31
+ Irepodun       |                715 |                    126 |                      60 |                     60 |                 8.39
+ Ola Oluwa      |                730 |                    150 |                      60 |                     60 |                 8.22
+ Ife East       |                726 |                    173 |                      60 |                     60 |                 8.26
+ Ila            |                706 |                    144 |                      59 |                     59 |                 8.36
+ Ife Central    |                683 |                    125 |                      57 |                     57 |                 8.35
+ Ife North      |                700 |                    142 |                      57 |                     57 |                 8.14
+ Aiyedire       |                669 |                    135 |                      57 |                     57 |                 8.52
+ Egbedore       |                707 |                    133 |                      56 |                     56 |                 7.92
+ Atakumosa West |                702 |                    131 |                      55 |                     55 |                 7.83
+ Boripe         |                708 |                    127 |                      55 |                     55 |                 7.77
+ Obokun         |                703 |                    130 |                      54 |                     54 |                 7.68
+ Atakumosa East |                761 |                    161 |                      54 |                     54 |                 7.10
+ Ede North      |                782 |                    159 |                      53 |                     53 |                 6.78
+ Iwo            |                700 |                    126 |                      51 |                     51 |                 7.29
+ Isokan         |                750 |                    148 |                      50 |                     50 |                 6.67
+ Boluwaduro     |                698 |                    148 |                      49 |                     49 |                 7.02
+ Orolu          |                756 |                    149 |                      49 |                     49 |                 6.48
+ Ejigbo         |                708 |                    158 |                      49 |                     49 |                 6.92
+ Ede South      |                739 |                    157 |                      48 |                     48 |                 6.50
+ Ilesa East     |                738 |                    169 |                      46 |                     46 |                 6.23
+ Odo Otin       |                717 |                    161 |                      44 |                     44 |                 6.14
+ Olorunda       |                701 |                    146 |                      43 |                     43 |                 6.13
+ Oriade         |                681 |                    122 |                      40 |                     40 |                 5.87
+(30 rows)
+
+ pepfar_uid |              facility_name              | sample_collected_date | viral_load_copies 
+------------+-----------------------------------------+-----------------------+-------------------
+ OS-037800  | Irewole Primary Health Centre           | 2026-06-11            |            199975
+ OS-038462  | Obokun Comprehensive Health Centre      | 2025-12-23            |            199941
+ OS-031937  | Obokun General Hospital                 | 2026-03-05            |            199895
+ OS-020242  | Ife North Primary Health Centre         | 2026-08-17            |            199893
+ OS-014076  | Olorunda General Hospital               | 2026-07-24            |            199866
+ OS-032767  | Ilesa West General Hospital             | 2026-09-28            |            199834
+ OS-040011  | Aiyedire General Hospital               | 2026-03-01            |            199721
+ OS-032002  | Ede South General Hospital              | 2026-03-08            |            199662
+ OS-032902  | Boripe General Hospital                 | 2026-08-22            |            199635
+ OS-044157  | Ede South Comprehensive Health Centre   | 2026-08-01            |            199418
+ OS-013485  | Osogbo General Hospital                 | 2026-01-19            |            199378
+ OS-026146  | Obokun Primary Health Centre            | 2025-12-18            |            199303
+ OS-024271  | Irewole Primary Health Centre           | 2026-03-29            |            199292
+ OS-042517  | Odo Otin Primary Health Centre          | 2026-03-23            |            199242
+ OS-024311  | Oriade Comprehensive Health Centre      | 2025-10-23            |            199112
+ OS-031632  | Obokun Primary Health Centre            | 2025-11-02            |            199047
+ OS-001861  | Orolu General Hospital                  | 2026-04-11            |            198936
+ OS-014790  | Irepodun Primary Health Centre          | 2026-02-15            |            198916
+ OS-046780  | Egbedore General Hospital               | 2026-09-22            |            198777
+ OS-012246  | Ife East Comprehensive Health Centre    | 2026-02-13            |            198775
+ OS-030672  | Osogbo Comprehensive Health Centre      | 2025-11-01            |            198703
+ OS-002850  | Ife East Comprehensive Health Centre    | 2026-08-26            |            198459
+ OS-021805  | Isokan General Hospital                 | 2026-06-01            |            198430
+ OS-026506  | Obokun Comprehensive Health Centre      | 2026-07-02            |            198266
+ OS-009052  | Osogbo Comprehensive Health Centre      | 2026-06-26            |            198222
+ OS-023222  | Ife North Primary Health Centre         | 2025-12-09            |            198196
+ OS-007455  | Ede North Primary Health Centre         | 2025-10-06            |            197983
+ OS-030277  | Ife East Comprehensive Health Centre    | 2025-10-05            |            197970
+ OS-013596  | Ifedayo Primary Health Centre           | 2026-06-14            |            197858
+ OS-012132  | Ila Comprehensive Health Centre         | 2025-10-09            |            197815
+ OS-020655  | Ilesa West Comprehensive Health Centre  | 2026-05-06            |            197756
+ OS-018240  | Ifedayo General Hospital                | 2026-01-20            |            197753
+ OS-029331  | Ede North General Hospital              | 2026-05-11            |            197662
+ OS-045296  | Osogbo General Hospital                 | 2025-12-24            |            197618
+ OS-038650  | Ifelodun General Hospital               | 2025-10-10            |            197555
+ OS-048192  | Ilesa East General Hospital             | 2025-10-05            |            197469
+ OS-024990  | Boluwaduro General Hospital             | 2026-03-20            |            197326
+ OS-011096  | Oriade Primary Health Centre            | 2025-11-23            |            197297
+ OS-002707  | Oriade Primary Health Centre            | 2026-06-25            |            197284
+ OS-011686  | Ifedayo Primary Health Centre           | 2026-04-10            |            197225
+ OS-009662  | Irewole Primary Health Centre           | 2026-04-27            |            197216
+ OS-040682  | Osogbo Comprehensive Health Centre      | 2025-12-09            |            197135
+ OS-002685  | Ife Central Comprehensive Health Centre | 2025-11-01            |            197126
+ OS-018745  | Ife Central General Hospital            | 2025-10-17            |            197037
+ OS-044346  | Atakumosa East General Hospital         | 2026-05-09            |            197001
+ OS-026446  | Ila General Hospital                    | 2026-02-15            |            196957
+ OS-047942  | Irewole Comprehensive Health Centre     | 2026-06-08            |            196933
+ OS-034095  | Boluwaduro Comprehensive Health Centre  | 2025-11-15            |            196897
+ OS-007401  | Olorunda General Hospital               | 2025-12-18            |            196820
+ OS-016907  | Osogbo General Hospital                 | 2025-12-03            |            196768
+(50 rows)
+
+ pepfar_uid | pickup_date | months_dispensed | next_appointment_date |           facility_name            
+------------+-------------+------------------+-----------------------+------------------------------------
+ OS-012345  | 2026-05-31  |                3 | 2026-08-29            | Obokun Comprehensive Health Centre
+ OS-012345  | 2026-03-02  |                3 | 2026-05-31            | Obokun Comprehensive Health Centre
+ OS-012345  | 2025-12-02  |                3 | 2026-03-02            | Obokun Comprehensive Health Centre
+ OS-012345  | 2025-09-03  |                3 | 2025-12-02            | Obokun Comprehensive Health Centre
+ OS-012345  | 2025-06-05  |                3 | 2025-09-03            | Obokun Comprehensive Health Centre
+ OS-012345  | 2025-03-07  |                3 | 2025-06-05            | Obokun Comprehensive Health Centre
+ OS-012345  | 2024-12-07  |                3 | 2025-03-07            | Obokun Comprehensive Health Centre
+ OS-012345  | 2024-09-08  |                3 | 2024-12-07            | Obokun Comprehensive Health Centre
+ OS-012345  | 2024-06-10  |                3 | 2024-09-08            | Obokun Comprehensive Health Centre
+ OS-012345  | 2024-03-12  |                3 | 2024-06-10            | Obokun Comprehensive Health Centre
+ OS-012345  | 2023-12-13  |                3 | 2024-03-12            | Obokun Comprehensive Health Centre
+ OS-012345  | 2023-09-14  |                3 | 2023-12-13            | Obokun Comprehensive Health Centre
+ OS-012345  | 2023-06-16  |                3 | 2023-09-14            | Obokun Comprehensive Health Centre
+ OS-012345  | 2023-03-18  |                3 | 2023-06-16            | Obokun Comprehensive Health Centre
+ OS-012345  | 2022-12-18  |                3 | 2023-03-18            | Obokun Comprehensive Health Centre
+ OS-012345  | 2022-09-19  |                3 | 2022-12-18            | Obokun Comprehensive Health Centre
+ OS-012345  | 2022-06-21  |                3 | 2022-09-19            | Obokun Comprehensive Health Centre
+(17 rows)
+
+ sample_collected_date | result_date | viral_load_copies | suppression_status 
+-----------------------+-------------+-------------------+--------------------
+ 2025-12-17            | 2025-12-25  |               125 | Suppressed
+ 2024-12-17            | 2025-01-03  |               740 | Suppressed
+ 2023-12-18            | 2024-01-07  |               959 | Suppressed
+ 2022-12-18            | 2022-12-26  |             28888 | Unsuppressed
+(4 rows)
+

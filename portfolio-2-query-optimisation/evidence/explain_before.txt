@@ -1,0 +1,186 @@
+Pager usage is off.
+SET
+==================== Query 1: IIT risk list ====================
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=33.249..33.279 rows=50 loops=1)
+   Buffers: shared hit=1116
+   ->  Sort (actual time=33.245..33.266 rows=50 loops=1)
+         Sort Key: a.next_appointment_date
+         Sort Method: top-N heapsort  Memory: 34kB
+         Buffers: shared hit=1116
+         ->  Hash Join (actual time=14.783..31.103 rows=17020 loops=1)
+               Hash Cond: (c.lga_id = l.lga_id)
+               Buffers: shared hit=1113
+               ->  Hash Join (actual time=14.743..29.040 rows=17020 loops=1)
+                     Hash Cond: (a.facility_id = f.facility_id)
+                     Buffers: shared hit=1112
+                     ->  Hash Join (actual time=14.239..26.362 rows=17020 loops=1)
+                           Hash Cond: (c.client_id = a.client_id)
+                           Buffers: shared hit=1110
+                           ->  Seq Scan on clients c (actual time=0.011..4.885 rows=50000 loops=1)
+                                 Buffers: shared hit=516
+                           ->  Hash (actual time=12.898..12.902 rows=17020 loops=1)
+                                 Buckets: 32768  Batches: 1  Memory Usage: 988kB
+                                 Buffers: shared hit=594
+                                 ->  Seq Scan on art_enrollments a (actual time=0.010..7.218 rows=17020 loops=1)
+                                       Filter: (((current_status)::text = 'Active'::text) AND (next_appointment_date < CURRENT_DATE))
+                                       Rows Removed by Filter: 12980
+                                       Buffers: shared hit=594
+                     ->  Hash (actual time=0.470..0.471 rows=90 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 15kB
+                           Buffers: shared hit=2
+                           ->  Seq Scan on facilities f (actual time=0.003..0.010 rows=90 loops=1)
+                                 Buffers: shared hit=2
+               ->  Hash (actual time=0.025..0.026 rows=30 loops=1)
+                     Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                     Buffers: shared hit=1
+                     ->  Seq Scan on lgas l (actual time=0.004..0.007 rows=30 loops=1)
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=327
+ Planning Time: 3.006 ms
+ Execution Time: 33.855 ms
+(38 rows)
+
+==================== Query 2: LGA TB/HIV cascade ====================
+                                                  QUERY PLAN                                                   
+---------------------------------------------------------------------------------------------------------------
+ HashAggregate (actual time=71.658..71.666 rows=30 loops=1)
+   Group Key: l.lga_id
+   Batches: 1  Memory Usage: 24kB
+   Buffers: shared hit=1661
+   ->  Hash Left Join (actual time=51.199..68.988 rows=25353 loops=1)
+         Hash Cond: (a.client_id = tb.client_id)
+         Buffers: shared hit=1661
+         ->  Hash Join (actual time=8.733..22.233 rows=25353 loops=1)
+               Hash Cond: (c.lga_id = l.lga_id)
+               Buffers: shared hit=1111
+               ->  Hash Join (actual time=8.707..19.200 rows=25353 loops=1)
+                     Hash Cond: (c.client_id = a.client_id)
+                     Buffers: shared hit=1110
+                     ->  Seq Scan on clients c (actual time=0.002..3.306 rows=50000 loops=1)
+                           Buffers: shared hit=516
+                     ->  Hash (actual time=8.694..8.694 rows=25353 loops=1)
+                           Buckets: 32768  Batches: 1  Memory Usage: 1247kB
+                           Buffers: shared hit=594
+                           ->  Seq Scan on art_enrollments a (actual time=0.010..5.524 rows=25353 loops=1)
+                                 Filter: ((current_status)::text = 'Active'::text)
+                                 Rows Removed by Filter: 4647
+                                 Buffers: shared hit=594
+               ->  Hash (actual time=0.015..0.016 rows=30 loops=1)
+                     Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                     Buffers: shared hit=1
+                     ->  Seq Scan on lgas l (actual time=0.007..0.009 rows=30 loops=1)
+                           Buffers: shared hit=1
+         ->  Hash (actual time=41.486..41.487 rows=30000 loops=1)
+               Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+               Buffers: shared hit=550
+               ->  Subquery Scan on tb (actual time=28.928..36.558 rows=30000 loops=1)
+                     Buffers: shared hit=550
+                     ->  HashAggregate (actual time=28.928..34.095 rows=30000 loops=1)
+                           Group Key: tb_screening_outcomes.client_id
+                           Batches: 1  Memory Usage: 4881kB
+                           Buffers: shared hit=550
+                           ->  Seq Scan on tb_screening_outcomes (actual time=0.008..6.790 rows=58857 loops=1)
+                                 Buffers: shared hit=550
+ Planning:
+   Buffers: shared hit=55
+ Planning Time: 0.499 ms
+ Execution Time: 74.183 ms
+(42 rows)
+
+==================== Query 3: latest VL unsuppressed ====================
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=72.443..72.452 rows=50 loops=1)
+   Buffers: shared hit=21250, temp read=341 written=342
+   ->  Sort (actual time=72.442..72.446 rows=50 loops=1)
+         Sort Key: v.viral_load_copies DESC
+         Sort Method: top-N heapsort  Memory: 31kB
+         Buffers: shared hit=21250, temp read=341 written=342
+         ->  Nested Loop (actual time=39.820..72.004 rows=2897 loops=1)
+               Buffers: shared hit=21247, temp read=341 written=342
+               ->  Nested Loop (actual time=39.810..67.014 rows=3434 loops=1)
+                     Buffers: shared hit=10945, temp read=341 written=342
+                     ->  Subquery Scan on v (actual time=39.782..62.589 rows=3434 loops=1)
+                           Filter: ((v.rn = 1) AND ((v.suppression_status)::text = 'Unsuppressed'::text))
+                           Rows Removed by Filter: 24851
+                           Buffers: shared hit=643, temp read=341 written=342
+                           ->  WindowAgg (actual time=39.774..60.508 rows=28285 loops=1)
+                                 Run Condition: (row_number() OVER (?) <= 1)
+                                 Buffers: shared hit=643, temp read=341 written=342
+                                 ->  Sort (actual time=39.754..46.074 rows=74767 loops=1)
+                                       Sort Key: vl.client_id, vl.sample_collected_date DESC, vl.vload_id DESC
+                                       Sort Method: external merge  Disk: 2728kB
+                                       Buffers: shared hit=643, temp read=341 written=342
+                                       ->  Seq Scan on lab_viral_load vl (actual time=0.005..10.463 rows=74767 loops=1)
+                                             Filter: ((suppression_status)::text <> 'Pending'::text)
+                                             Rows Removed by Filter: 2842
+                                             Buffers: shared hit=643
+                     ->  Index Scan using clients_pkey on clients c (actual time=0.001..0.001 rows=1 loops=3434)
+                           Index Cond: (client_id = v.client_id)
+                           Buffers: shared hit=10302
+               ->  Index Scan using art_enrollments_client_id_key on art_enrollments a (actual time=0.001..0.001 rows=1 loops=3434)
+                     Index Cond: (client_id = c.client_id)
+                     Filter: ((current_status)::text = 'Active'::text)
+                     Rows Removed by Filter: 0
+                     Buffers: shared hit=10302
+ Planning:
+   Buffers: shared hit=78
+ Planning Time: 0.329 ms
+ Execution Time: 72.991 ms
+(37 rows)
+
+==================== Query 4a: client pickup history ====================
+                                                              QUERY PLAN                                                               
+---------------------------------------------------------------------------------------------------------------------------------------
+ Sort (actual time=0.069..0.070 rows=17 loops=1)
+   Sort Key: p.pickup_date DESC
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=44
+   ->  Nested Loop (actual time=0.050..0.063 rows=17 loops=1)
+         Buffers: shared hit=44
+         ->  Nested Loop (actual time=0.048..0.052 rows=17 loops=1)
+               Buffers: shared hit=10
+               ->  Nested Loop (actual time=0.017..0.017 rows=1 loops=1)
+                     Buffers: shared hit=6
+                     ->  Index Scan using clients_pepfar_uid_key on clients c (actual time=0.012..0.012 rows=1 loops=1)
+                           Index Cond: ((pepfar_uid)::text = 'OS-012345'::text)
+                           Buffers: shared hit=3
+                     ->  Index Scan using art_enrollments_client_id_key on art_enrollments a (actual time=0.003..0.003 rows=1 loops=1)
+                           Index Cond: (client_id = c.client_id)
+                           Buffers: shared hit=3
+               ->  Index Scan using uq_pickup_per_day on art_pickups p (actual time=0.030..0.032 rows=17 loops=1)
+                     Index Cond: (art_id = a.art_id)
+                     Buffers: shared hit=4
+         ->  Index Scan using facilities_pkey on facilities f (actual time=0.000..0.000 rows=1 loops=17)
+               Index Cond: (facility_id = p.facility_id)
+               Buffers: shared hit=34
+ Planning:
+   Buffers: shared hit=85
+ Planning Time: 0.521 ms
+ Execution Time: 0.087 ms
+(26 rows)
+
+==================== Query 4b: client VL history ====================
+                                              QUERY PLAN                                              
+------------------------------------------------------------------------------------------------------
+ Sort (actual time=3.835..3.836 rows=4 loops=1)
+   Sort Key: lab_viral_load.sample_collected_date DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=646
+   InitPlan 1 (returns $0)
+     ->  Index Scan using clients_pepfar_uid_key on clients (actual time=0.007..0.008 rows=1 loops=1)
+           Index Cond: ((pepfar_uid)::text = 'OS-012345'::text)
+           Buffers: shared hit=3
+   ->  Seq Scan on lab_viral_load (actual time=0.471..3.831 rows=4 loops=1)
+         Filter: (client_id = $0)
+         Rows Removed by Filter: 77605
+         Buffers: shared hit=646
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.071 ms
+ Execution Time: 3.845 ms
+(16 rows)
+
