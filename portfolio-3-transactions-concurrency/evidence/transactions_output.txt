@@ -1,0 +1,114 @@
+Pager usage is off.
+SHOW default_transaction_isolation;
+ default_transaction_isolation 
+-------------------------------
+ read committed
+(1 row)
+
+SELECT art_id, facility_id, last_pickup_date, next_appointment_date
+FROM ART_Enrollments WHERE current_status = 'Active' ORDER BY art_id LIMIT 1 
+BEGIN;
+BEGIN
+INSERT INTO ART_Pickups (art_id, facility_id, pickup_date, months_dispensed, next_appointment_date)
+VALUES (1, 30, DATE '2027-03-06', 3, DATE '2027-03-06' + 90);
+INSERT 0 1
+UPDATE ART_Enrollments
+SET last_pickup_date      = DATE '2027-03-06',
+    next_appointment_date = DATE '2027-03-06' + 90
+WHERE art_id = 1;
+UPDATE 1
+COMMIT;
+COMMIT
+SELECT a.art_id, a.last_pickup_date, a.next_appointment_date,
+       (SELECT COUNT(*) FROM ART_Pickups p WHERE p.art_id = a.art_id) AS pickup_rows
+FROM ART_Enrollments a WHERE a.art_id = 1;
+ art_id | last_pickup_date | next_appointment_date | pickup_rows 
+--------+------------------+-----------------------+-------------
+      1 | 2027-03-06       | 2027-06-04            |          18
+(1 row)
+
+SELECT last_pickup_date AS s2_last, next_appointment_date AS s2_next
+FROM ART_Enrollments WHERE art_id = 1 
+BEGIN;
+BEGIN
+UPDATE ART_Enrollments
+SET last_pickup_date = DATE '2027-06-04', next_appointment_date = DATE '2027-06-04' + 120
+WHERE art_id = 1;
+UPDATE 1
+INSERT INTO ART_Pickups (art_id, facility_id, pickup_date, months_dispensed, next_appointment_date)
+VALUES (1, 30, DATE '2027-06-04', 4, DATE '2027-06-04' + 120);
+psql:/work/portfolio-3-transactions-concurrency/transactions.sql:57: ERROR:  new row for relation "art_pickups" violates check constraint "art_pickups_months_dispensed_check"
+DETAIL:  Failing row contains (374586, 1, 30, 2027-06-04, 4, 2027-10-02).
+SELECT 'this will not run';
+psql:/work/portfolio-3-transactions-concurrency/transactions.sql:60: ERROR:  current transaction is aborted, commands ignored until end of transaction block
+ROLLBACK;
+ROLLBACK
+SELECT art_id, last_pickup_date, next_appointment_date,
+       (last_pickup_date = DATE '2027-03-06' AND next_appointment_date = DATE '2027-06-04') AS unchanged
+FROM ART_Enrollments WHERE art_id = 1;
+ art_id | last_pickup_date | next_appointment_date | unchanged 
+--------+------------------+-----------------------+-----------
+      1 | 2027-03-06       | 2027-06-04            | t
+(1 row)
+
+BEGIN;
+BEGIN
+UPDATE ART_Enrollments SET current_status = 'Deceased' WHERE art_id = 1;
+UPDATE 1
+SELECT art_id, current_status AS status_inside_txn FROM ART_Enrollments WHERE art_id = 1;
+ art_id | status_inside_txn 
+--------+-------------------
+      1 | Deceased
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+SELECT art_id, current_status AS status_after_rollback FROM ART_Enrollments WHERE art_id = 1;
+ art_id | status_after_rollback 
+--------+-----------------------
+      1 | Active
+(1 row)
+
+DELETE FROM Clients WHERE pepfar_uid = 'OS-DEMO-0001';
+DELETE 1
+BEGIN;
+BEGIN
+INSERT INTO Clients (pepfar_uid, first_name, last_name, dob, gender, lga_id)
+VALUES ('OS-DEMO-0001', 'Demo', 'Client', DATE '1990-05-20', 'Female',
+        (SELECT lga_id FROM LGAs WHERE lga_name = 'Osogbo'))
+RETURNING client_id AS new_client_id 
+INSERT 0 1
+INSERT INTO HTS_Encounters (client_id, facility_id, testing_point, hiv_status, encounter_date)
+VALUES (50002, 30, 'Facility-OPD', 'Positive', CURRENT_DATE);
+INSERT 0 1
+INSERT INTO ART_Enrollments (client_id, facility_id, enrollment_date, clinical_stage, regimen_line, regimen,
+                             last_pickup_date, next_appointment_date)
+VALUES (50002, 30, CURRENT_DATE, 1, 'First-Line', 'TLD', CURRENT_DATE, CURRENT_DATE + 30);
+INSERT 0 1
+SAVEPOINT before_lab;
+SAVEPOINT
+INSERT INTO Lab_Viral_Load (client_id, facility_id, sample_collected_date, result_date, viral_load_copies, suppression_status)
+VALUES (50002, 30, CURRENT_DATE, CURRENT_DATE, 5000, 'Suppressed');
+psql:/work/portfolio-3-transactions-concurrency/transactions.sql:107: ERROR:  new row for relation "lab_viral_load" violates check constraint "chk_vl_status_consistent"
+DETAIL:  Failing row contains (77612, 50002, 30, 2026-11-10, 2026-11-10, 5000, Suppressed).
+ROLLBACK TO SAVEPOINT before_lab;
+ROLLBACK
+INSERT INTO Lab_Viral_Load (client_id, facility_id, sample_collected_date, suppression_status)
+VALUES (50002, 30, CURRENT_DATE, 'Pending');
+INSERT 0 1
+COMMIT;
+COMMIT
+SELECT c.pepfar_uid,
+       (SELECT COUNT(*) FROM HTS_Encounters  h WHERE h.client_id = c.client_id) AS hts_rows,
+       (SELECT COUNT(*) FROM ART_Enrollments a WHERE a.client_id = c.client_id) AS art_rows,
+       (SELECT string_agg(suppression_status, ',') FROM Lab_Viral_Load v WHERE v.client_id = c.client_id) AS vl_rows
+FROM Clients c WHERE c.pepfar_uid = 'OS-DEMO-0001';
+  pepfar_uid  | hts_rows | art_rows | vl_rows 
+--------------+----------+----------+---------
+ OS-DEMO-0001 |        1 |        1 | Pending
+(1 row)
+
+INSERT INTO ART_Pickups (art_id, facility_id, pickup_date, months_dispensed, next_appointment_date)
+VALUES (1, 30, DATE '2027-03-06', 3, DATE '2027-03-06' + 90);
+psql:/work/portfolio-3-transactions-concurrency/transactions.sql:130: ERROR:  duplicate key value violates unique constraint "uq_pickup_per_day"
+DETAIL:  Key (art_id, pickup_date)=(1, 2027-03-06) already exists.
