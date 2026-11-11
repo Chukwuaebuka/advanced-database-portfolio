@@ -1,0 +1,49 @@
+Pager usage is off.
+SET
+  lga_name  | clients | pct  
+------------+---------+------
+ Osogbo     |    8720 | 17.4
+ Ife South  |    1491 |  3.0
+ Ede North  |    1490 |  3.0
+ Ilesa West |    1487 |  3.0
+ Ifelodun   |    1484 |  3.0
+(5 rows)
+
+DROP TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+INSERT 0 77610
+ANALYZE
+    partition     | rows  | pct  
+------------------+-------+------
+ lvl_osun_central | 33330 | 42.9
+ lvl_osun_east    | 22181 | 28.6
+ lvl_osun_west    | 22099 | 28.5
+(3 rows)
+
+                                       QUERY PLAN                                       
+----------------------------------------------------------------------------------------
+ HashAggregate (actual rows=3 loops=1)
+   Group Key: lab_viral_load_by_district.suppression_status
+   Batches: 1  Memory Usage: 24kB
+   ->  Seq Scan on lvl_osun_east lab_viral_load_by_district (actual rows=22181 loops=1)
+         Filter: ((senatorial_district)::text = 'Osun East'::text)
+ Planning Time: 0.060 ms
+ Execution Time: 2.872 ms
+(7 rows)
+
+                                            QUERY PLAN                                             
+---------------------------------------------------------------------------------------------------
+ HashAggregate (actual rows=3 loops=1)
+   Group Key: lab_viral_load_by_district.suppression_status
+   Batches: 1  Memory Usage: 24kB
+   ->  Append (actual rows=77610 loops=1)
+         ->  Seq Scan on lvl_osun_central lab_viral_load_by_district_1 (actual rows=33330 loops=1)
+         ->  Seq Scan on lvl_osun_east lab_viral_load_by_district_2 (actual rows=22181 loops=1)
+         ->  Seq Scan on lvl_osun_west lab_viral_load_by_district_3 (actual rows=22099 loops=1)
+ Planning Time: 0.038 ms
+ Execution Time: 9.421 ms
+(9 rows)
+
