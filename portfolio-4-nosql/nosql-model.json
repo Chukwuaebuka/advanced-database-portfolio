@@ -1,0 +1,91 @@
+{
+  "_id": "OS-012345",
+  "demographics": {
+    "gender": "Female",
+    "birth_year": 1960,
+    "lga": "Obokun",
+    "senatorial_district": "Osun East"
+  },
+  "art": {
+    "enrollment_date": {
+      "$date": "2022-06-21T00:00:00Z"
+    },
+    "facility": "Obokun Comprehensive Health Centre",
+    "clinical_stage": 1,
+    "regimen_line": "First-Line",
+    "regimen": "TLD",
+    "current_status": "Active",
+    "last_pickup_date": {
+      "$date": "2026-08-29T00:00:00Z"
+    },
+    "next_appointment_date": {
+      "$date": "2026-11-27T00:00:00Z"
+    }
+  },
+  "pickups": [
+    {
+      "date": {
+        "$date": "2026-05-31T00:00:00Z"
+      },
+      "facility": "Obokun Comprehensive Health Centre",
+      "months_dispensed": 3,
+      "next_appointment": {
+        "$date": "2026-08-29T00:00:00Z"
+      }
+    },
+    {
+      "date": {
+        "$date": "2026-08-29T00:00:00Z"
+      },
+      "facility": "Obokun Comprehensive Health Centre",
+      "months_dispensed": 3,
+      "next_appointment": {
+        "$date": "2026-11-27T00:00:00Z"
+      }
+    }
+  ],
+  "tb_screenings": [
+    {
+      "date": {
+        "$date": "2022-06-21T00:00:00Z"
+      },
+      "cough": false,
+      "fever": false,
+      "status": "No-Signs",
+      "treatment_started": false,
+      "outcome": "Not-Applicable"
+    },
+    {
+      "date": {
+        "$date": "2022-12-18T00:00:00Z"
+      },
+      "cough": false,
+      "fever": false,
+      "status": "No-Signs",
+      "treatment_started": false,
+      "outcome": "Not-Applicable"
+    }
+  ],
+  "viral_loads": [
+    {
+      "sample_date": {
+        "$date": "2024-12-17T00:00:00Z"
+      },
+      "result_date": {
+        "$date": "2025-01-03T00:00:00Z"
+      },
+      "copies_per_ml": 740,
+      "status": "Suppressed"
+    },
+    {
+      "sample_date": {
+        "$date": "2025-12-17T00:00:00Z"
+      },
+      "result_date": {
+        "$date": "2025-12-25T00:00:00Z"
+      },
+      "copies_per_ml": 125,
+      "status": "Suppressed"
+    }
+  ]
+}
