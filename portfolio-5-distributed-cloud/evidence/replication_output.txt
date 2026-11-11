@@ -1,0 +1,77 @@
+
+==================== 0. Waiting for replica to accept connections ====================
+ready
+
+==================== 1. Replication status on PRIMARY (pg_stat_replication) ====================
+ application_name | client_addr |   state   | sync_state | sent_lsn  | replay_lsn | write_lag | replay_lag 
+------------------+-------------+-----------+------------+-----------+------------+-----------+------------
+ walreceiver      | 172.18.0.3  | streaming | async      | 0/C1EF1A8 | 0/C1EF1A8  |           | 
+(1 row)
+
+  slot_name   | slot_type | active 
+--------------+-----------+--------
+ replica_slot | physical  | t
+(1 row)
+
+
+==================== 2. Roles: primary vs replica ====================
+  node   | in_recovery 
+---------+-------------
+ primary | f
+(1 row)
+
+  node   | in_recovery 
+---------+-------------
+ replica | t
+(1 row)
+
+
+==================== 3. Data was cloned: row counts on both nodes ====================
+primary clients=50000
+replica clients=50000
+
+==================== 4. Write on primary -> visible on replica (asynchronous replication) ====================
+  pepfar_uid  | committed_on_primary 
+--------------+----------------------
+ OS-REPL-0001 | 03:55:53.773
+(1 row)
+
+INSERT 0 1
+  pepfar_uid  | read_on_replica 
+--------------+-----------------
+ OS-REPL-0001 | 03:55:53.842
+(1 row)
+
+ replica_replayed_lsn | time_since_last_replayed_txn 
+----------------------+------------------------------
+ 0/C1F2838            | 00:00:00.125898
+(1 row)
+
+ application_name | bytes_behind 
+------------------+--------------
+ walreceiver      |            0
+(1 row)
+
+
+==================== 5. Replica is read-only (writes rejected) ====================
+ERROR:  cannot execute INSERT in a read-only transaction
+
+==================== 6. FAILOVER: stop primary, promote replica ====================
+primary stopped at 04:55:54
+ promoted 
+----------
+ t
+(1 row)
+
+ in_recovery_after_promote 
+---------------------------
+ f
+(1 row)
+
+  pepfar_uid  |            result             
+--------------+-------------------------------
+ OS-REPL-0003 | write accepted by new primary
+(1 row)
+
+INSERT 0 1
+clients on new primary=50002
