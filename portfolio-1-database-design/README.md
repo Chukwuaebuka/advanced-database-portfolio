@@ -19,3 +19,9 @@ psql -d speed_osun -f seed_data.sql      # prints row counts at the end
 ## How it was tested
 
 - The seed loads with zero constraint violations. Every CHECK, UNIQUE and FK constraint is satisfied by ~650k generated rows.
+- Constraint behaviour is tested in Portfolio 3:
+  - `months_dispensed` CHECK
+  - `chk_vl_status_consistent`
+  - `uq_pickup_per_day`
+
+  Each one rejects bad data as designed. See [portfolio-3-transactions-concurrency/evidence/](../portfolio-3-transactions-concurrency/evidence/)

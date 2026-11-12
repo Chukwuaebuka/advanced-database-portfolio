@@ -1,6 +1,6 @@
 # ER Diagram: ECEWS SPEED Osun Hub
 
-The diagram is written in Mermaid, which GitHub renders automatically.
+The diagram is written in Mermaid, which GitHub renders automatically. You can also open as preview inside of VS code to view the Rendered ER diagram.
 
 ```mermaid
 erDiagram

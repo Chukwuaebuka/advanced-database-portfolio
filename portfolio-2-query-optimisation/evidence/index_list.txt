@@ -1,0 +1,23 @@
+                                                            List of relations
+ Schema |             Name              | Type  |  Owner   |         Table         | Persistence | Access method |  Size   | Description 
+--------+-------------------------------+-------+----------+-----------------------+-------------+---------------+---------+-------------
+ public | art_enrollments_client_id_key | index | postgres | art_enrollments       | permanent   | btree         | 1336 kB | 
+ public | art_enrollments_pkey          | index | postgres | art_enrollments       | permanent   | btree         | 1336 kB | 
+ public | art_pickups_pkey              | index | postgres | art_pickups           | permanent   | btree         | 8240 kB | 
+ public | clients_pepfar_uid_key        | index | postgres | clients               | permanent   | btree         | 1552 kB | 
+ public | clients_pkey                  | index | postgres | clients               | permanent   | btree         | 1112 kB | 
+ public | community_outreaches_pkey     | index | postgres | community_outreaches  | permanent   | btree         | 32 kB   | 
+ public | facilities_pkey               | index | postgres | facilities            | permanent   | btree         | 16 kB   | 
+ public | hts_encounters_pkey           | index | postgres | hts_encounters        | permanent   | btree         | 1112 kB | 
+ public | idx_art_status_next_appt      | index | postgres | art_enrollments       | permanent   | btree         | 264 kB  | 
+ public | idx_clients_lga               | index | postgres | clients               | permanent   | btree         | 368 kB  | 
+ public | idx_tb_client_date            | index | postgres | tb_screening_outcomes | permanent   | btree         | 1304 kB | 
+ public | idx_vl_client_date            | index | postgres | lab_viral_load        | permanent   | btree         | 1720 kB | 
+ public | lab_viral_load_pkey           | index | postgres | lab_viral_load        | permanent   | btree         | 1712 kB | 
+ public | lgas_lga_name_key             | index | postgres | lgas                  | permanent   | btree         | 16 kB   | 
+ public | lgas_pkey                     | index | postgres | lgas                  | permanent   | btree         | 16 kB   | 
+ public | tb_screening_outcomes_pkey    | index | postgres | tb_screening_outcomes | permanent   | btree         | 1304 kB | 
+ public | uq_facility_name_lga          | index | postgres | facilities            | permanent   | btree         | 16 kB   | 
+ public | uq_pickup_per_day             | index | postgres | art_pickups           | permanent   | btree         | 8248 kB | 
+(18 rows)
+
